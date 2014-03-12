@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api',version: '2.0'
+    compile group: 'com.fasterxml.jackson.jaxrs' , name: 'jackson-jaxrs-json-provider', version: '2.2.3'
+    compile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-grizzly2', version: '2.6'
+    compile group: 'org.glassfish.jersey', name: 'project', version: '2.6'
+}
+
+war{
+    archiveName="AdminUtility.war"
+    webXml = file('src/webapp/WEB-INF/web.xml')
+    from('src/webapp') {
+        include '*.html'
+    }
+    from('src/webapp/scripts'){
+        include '*.js'
+        into 'scripts'
+    }
+}
