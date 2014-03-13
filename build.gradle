@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
@@ -14,6 +14,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.jaxrs' , name: 'jackson-jaxrs-json-provider', version: '2.2.3'
     compile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-grizzly2', version: '2.6'
     compile group: 'org.glassfish.jersey', name: 'project', version: '2.6'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.6'
+    compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
 }
 
 war{
@@ -25,5 +27,9 @@ war{
     from('src/webapp/scripts'){
         include '*.js'
         into 'scripts'
+    }
+    from('src/webapp/WEB-INF'){
+        include 'config.properties'
+        into 'WEB-INF'
     }
 }
