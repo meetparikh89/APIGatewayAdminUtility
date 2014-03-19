@@ -1,8 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html ng-app='AdminUtilityApp'>
 <head>
-    <title>Welcome</title>
+    <title>Admin Utility</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.js"></script>
+    <script type="text/javascript" src="scripts/AdminUtilityApp.js"></script>
+    <script type="text/javascript" src="scripts/controllers/AdminLoginController.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
-    Mother Nature !!!!
+<div id="main">
+    <form name="loginForm" ng-submit="submitForm()" method="post" ng-form>
+
+            <label>UserName:</label>
+            <input type="text" name="userName" ng-model="admin.userName" ng-minlength="3" ng-maxlength="8" required>
+            <div ng-show="loginUserNameError">UserName is mandatory and size should be between 3 & 8</div>
+
+            <label>Password:</label>
+            <input type="password" name="password" ng-model="admin.password" ng-minlength="4" ng-maxlength="10" required>
+            <div ng-show="loginPasswordError">Password is mandatory and size should be between 4 & 10</div>
+
+            <label>Environment:</label>
+            <input type="radio" ng-model="admin.env" value="ref" name="environment"> REF <input type="radio" ng-model="admin.env" value="live" name="environment">LIVE
+            <div ng-show="loginEnvironmentError">At least one radio button should be checked</div>
+
+            <button type="reset" value="Reset" ng-click="resetLogin()">Reset</button>
+            <button type="submit">Submit</button>
+
+    </form>
+</div>
+<div ng-view>
+    <!-- Views are added here at runtime. -->
+</div>
 </body>
 </html>

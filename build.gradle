@@ -25,11 +25,17 @@ war{
         include '*.html'
     }
     from('src/webapp/scripts'){
-        include '*.js'
         into 'scripts'
     }
     from('src/webapp/WEB-INF'){
         include 'config.properties'
         into 'WEB-INF'
+    }
+    from('src/webapp/css'){
+        include '*.css'
+        into 'css'
+    }
+    from('src/webapp/views'){
+        into 'views'
     }
 }
